@@ -1,7 +1,7 @@
 ---
 title: "Inference Simulations"
 subtitle: "PSYC 201A, Simulation Lab 2"
-author: "Your name here"
+author: "Sarah Segall"
 date: today
 format:
   html:
@@ -78,7 +78,7 @@ tea_data <- make_tea_data(n_total = 18, delta = .5)
 Now, make a new data frame (call it `tea_data_highn`) with an N of 48, or something higher if you want. You need to call the custom function. Keep the same small effect (`delta = .5`): we come back to this experiment in Parts 2 and 3.
 
 ```{r}
-
+tea_data_highn = make_tea_data(n_total = 48, delta = .5)
 ```
 
 To do: OK, look at these data. How long are they, what are the column names? Look at them in your console by copy and pasting the variable names into R.
@@ -88,8 +88,19 @@ Call `summary(tea_data)` and look at the outputs. Call `head(tea_data)` to look 
 To do: Write basic tidyverse code to calculate the mean of each condition (hint: use `group_by` and `summarize`).
 
 ```{r}
+summary(tea_data)
+head(tea_data)
 
- 
+tea_data %>%
+  group_by(condition) %>%
+  summarize(mean_rating = mean(rating),
+            num_participants = length(rating))
+
+tea_data_highn %>%
+  group_by(condition) %>%
+  summarize(mean_rating = mean(rating),
+            num_participants = length(rating))
+
 ```
 
 ## In this first draw, was it significant with N=9 or N=24 per group?
